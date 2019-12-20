@@ -1,0 +1,30 @@
+<!-- 
+<form (ngSubmit)="getJson2jsonpath()" #messageForm="ngForm">
+    <input type="text" [(ngModel)]="json" name="json"/>
+    <button type="submit">Send</button>
+  </form>
+   -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p class="lead mt-4">Generate List of JSONPath with values for all elements in provided json.</p>
+      <form (ngSubmit)="getJson2jsonpath()" class="form-group py-3"  #messageForm="ngForm">
+                <textarea [(ngModel)]="json" class="form-control z-depth-1 shadow-sm" id="jsonInput" name="json" rows="20"
+                 placeholder="Place a valid JSON here..."></textarea>
+        <button class="btn btn-primary btn-lg my-3" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 mb-5">
+      <div *ngFor="let jsonpath of jsonPaths">
+        <div>{{jsonpath}}</div>
+      </div>
+    </div>
+  </div>
+</div>
