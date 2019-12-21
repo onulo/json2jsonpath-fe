@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://sme.sk'
+  baseUrl: 'https://json2jsonpath.herokuapp.com/'
 };
