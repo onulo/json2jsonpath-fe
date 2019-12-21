@@ -10,8 +10,9 @@ import {JsonPathResponse} from './JsonPathResponse';
 export class Json2jsonpathComponent implements OnInit {
 
   jsonpathService: JsonpathService;
-  jsonPathResponse: JsonPathResponse;
+  jsonPathResponse: JsonPathResponse = new JsonPathResponse();
   json: string;
+  showSpinner: boolean;
 
   constructor(jsonPathService: JsonpathService) {
     this.jsonpathService = jsonPathService;
@@ -21,9 +22,14 @@ export class Json2jsonpathComponent implements OnInit {
   }
 
   getJson2jsonpath() {
+    this.showSpinner = true;
     this.jsonpathService.generateJsonPaths(this.json).subscribe((data: JsonPathResponse) => {
+      this.showSpinner = false;
       this.jsonPathResponse = data;
-    });
+    }, (error => {
+      this.showSpinner = false;
+      console.log('error' + error.toString());
+    }));
   }
 
   prettyPrint() {

@@ -10,7 +10,7 @@ import { Json2jsonpathComponent } from './json2jsonpath/json2jsonpath.component'
 @NgModule({
   declarations: [
     AppComponent,
-    Json2jsonpathComponent,
+    Json2jsonpathComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,12 @@
                           rows="20"
                           placeholder="Place a valid JSON here...">
                 </textarea>
-        <button class="btn btn-primary btn-lg my-3" type="submit">Send</button>
+        <button *ngIf="!showSpinner" class="btn btn-primary btn-lg my-3" type="submit">Send
+        </button>
+        <button *ngIf="showSpinner" class="btn btn-primary btn-lg my-3" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
       </form>
     </div>
   </div>
@@ -28,8 +33,10 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 mb-5">
-      <div *ngFor="let jsonpath of jsonPathResponse.jsonPaths">
-        <div>{{jsonpath}}</div>
+      <div *ngIf="jsonPathResponse">
+        <div *ngFor="let jsonpath of jsonPathResponse.jsonPaths">
+          <div>{{jsonpath}}</div>
+        </div>
       </div>
     </div>
   </div>
