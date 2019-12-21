@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { JsonpathService } from "../jsonpath.service"
+import {Component, OnInit} from '@angular/core';
+import {JsonpathService} from '../jsonpath.service';
+import {JsonPathResponse} from './JsonPathResponse';
 
 @Component({
   selector: 'app-json2jsonpath',
@@ -8,21 +9,25 @@ import { JsonpathService } from "../jsonpath.service"
 })
 export class Json2jsonpathComponent implements OnInit {
 
-  jsonpathService: JsonpathService; 
-  jsonPaths: string[];
+  jsonpathService: JsonpathService;
+  jsonPathResponse: JsonPathResponse;
   json: string;
 
-  constructor(jsonPathService : JsonpathService) { 
+  constructor(jsonPathService: JsonpathService) {
     this.jsonpathService = jsonPathService;
   }
 
   ngOnInit() {
   }
 
-   getJson2jsonpath(){
-    this.jsonpathService.generateJsonPaths(this.json).subscribe((data: string[]) => {
-      this.jsonPaths = data;
+  getJson2jsonpath() {
+    this.jsonpathService.generateJsonPaths(this.json).subscribe((data: JsonPathResponse) => {
+      this.jsonPathResponse = data;
     });
   }
-  
+
+  prettyPrint() {
+    const object = JSON.parse(this.json);
+    this.json = JSON.stringify(object, null, 3);
+  }
 }
